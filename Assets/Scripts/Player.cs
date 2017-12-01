@@ -15,18 +15,30 @@ public class Player : MonoBehaviour
     public float burden = 1;
 
     public int playerID;
+    private string input_xAxis;
+    private string input_yAxis;
+    public bool enableKeyboardInput = false;
     
 	// Use this for initialization
 	void Start () 
     {
         rb = gameObject.GetComponent<Rigidbody>();
+        if (enableKeyboardInput) {
+            input_xAxis = "Horizontal";
+            input_yAxis = "Vertical";
+        }
+        else
+        {
+            input_xAxis = "Horizontal" + playerID.ToString();
+            input_yAxis = "Vertical" + playerID.ToString();
+        }
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () 
     {
         
-        Vector3 targetVelocity = Vector3.Normalize(new Vector3(Input.GetAxis("Horizontal" + playerID.ToString()), 0, Input.GetAxis("Vertical" + playerID.ToString())));
+        Vector3 targetVelocity = Vector3.Normalize(new Vector3(Input.GetAxis(input_xAxis), 0, Input.GetAxis(input_yAxis)));
         rb.velocity = targetVelocity * speed * burden;
         var localVelocity = gameObject.transform.InverseTransformDirection(rb.velocity);
         if (localVelocity.x !=0 && localVelocity.z != 0)
