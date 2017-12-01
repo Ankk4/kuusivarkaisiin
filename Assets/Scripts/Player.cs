@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     public float turnSpeed = 5.0f;
 
     public float burden = 1;
+
+    public int playerID;
     
 	// Use this for initialization
 	void Start () 
@@ -23,7 +25,8 @@ public class Player : MonoBehaviour
 	// Update is called once per frame
 	void FixedUpdate () 
     {
-        Vector3 targetVelocity = Vector3.Normalize(new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")));
+        
+        Vector3 targetVelocity = Vector3.Normalize(new Vector3(Input.GetAxis("Horizontal" + playerID.ToString()), 0, Input.GetAxis("Vertical" + playerID.ToString())));
         rb.velocity = targetVelocity * speed * burden;
         var localVelocity = gameObject.transform.InverseTransformDirection(rb.velocity);
         if (localVelocity.x !=0 && localVelocity.z != 0)
