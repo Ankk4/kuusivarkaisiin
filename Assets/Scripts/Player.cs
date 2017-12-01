@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class Player : MonoBehaviour 
@@ -12,9 +13,15 @@ public class Player : MonoBehaviour
     public float speed = 5.0f;
     public float turnSpeed = 5.0f;
 
+    public Text moneyText;
+
+    public GameObject carriedObject;
+    public Transform backPack;
+
+    [Range(1,4)]public int playerID = 1;
+
     public float burden = 1;
 
-    public int playerID;
     private string input_xAxis;
     private string input_yAxis;
     public bool enableKeyboardInput = false;
@@ -32,6 +39,9 @@ public class Player : MonoBehaviour
             input_xAxis = "Horizontal" + playerID.ToString();
             input_yAxis = "Vertical" + playerID.ToString();
         }
+
+        moneyText.text = "PLAYER " + playerID + " MONEYS: " + playerMoney;
+
 	}
 	
 	// Update is called once per frame
@@ -52,13 +62,33 @@ public class Player : MonoBehaviour
 	}
     void OnTriggerEnter(Collider other) 
     {
-        other.gameObject.transform.parent = gameObject.transform;
-        Wood wood = other.gameObject.GetComponent<Wood>();
+        if (other.gameObject.tag == "Collectable" && !hasTree)
+        {
+            carriedObject = other.gameObject;
+            carriedObject.transform.parent = backPack;
+            carriedObject.transform.position = backPack.position;
+            carriedObject.transform.rotation = backPack.rotation;
 
-        currentMoney = wood.money;
-        burden = wood.burden;
+            Wood wood = other.gameObject.GetComponent<Wood>();
 
-        hasTree = true;
-        other.enabled = false;
+            currentMoney = wood.money;
+            burden = wood.burden;
+
+            hasTree = true;
+            other.enabled = false;
+        }
+
+
+        if (other.gameObject.tag == "Shop" && hasTree)
+        {
+            Destroy(carriedObject);
+
+            playerMoney += currentMoney;
+            moneyText.text = "PLAYER " + playerID + " MONEYS: " + playerMoney;
+            
+            currentMoney = 0;
+            burden = 1;
+            hasTree = false;
+        }
     }
 }

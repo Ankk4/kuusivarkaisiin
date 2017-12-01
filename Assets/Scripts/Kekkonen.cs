@@ -14,9 +14,8 @@ public class Kekkonen : MonoBehaviour {
     public int speed = 10;
 
 	// Use this for initialization
-	void Start (Vector3 sLoc, Vector3 eLoc) {
-        this.startLocation = sLoc;
-        this.endLocation = eLoc;
+	void Start () {
+
 	}
 	
 	// Update is called once per frame
