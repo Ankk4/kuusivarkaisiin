@@ -5,8 +5,8 @@ using UnityEngine;
 public class Wood : MonoBehaviour {
     public int money = 0;
     public float burden = 0.1f;
-    public int maxHealth = 100;
-    public int currentHealth = 10;
+    public int maxHealth = 5;
+    public int currentHealth = 5;
     public float woodMass = 3;
 
 	// Use this for initialization

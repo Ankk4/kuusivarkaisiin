@@ -15,7 +15,8 @@ public class Player : MonoBehaviour
 
     public Text moneyText;
 
-    public float cutStrength = 1;
+    public int cutStrength = 1;
+    public bool cutAvailable = true;
 
     public GameObject carriedObject;
     private Collider carriedCol;
@@ -76,10 +77,8 @@ public class Player : MonoBehaviour
 
             playerMoney += currentMoney;
             moneyText.text = "PLAYER " + playerID + " MONEYS: " + playerMoney;
-            
-            currentMoney = 0;
-            burden = 1;
-            hasTree = false;
+  
+            ResetPlayerStats();
         }
     }
 
@@ -87,10 +86,16 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.tag == "Collectable" && !hasTree)
         {
-            if(Input.GetButtonDown("Fire1"))
+            
+            if(Input.GetButton("Fire1") && cutAvailable)
             {
-                CollectTree(other);
+                StartCoroutine(CutTree(other, 1.0F));
             }
+        }
+
+        if (other.gameObject.tag == "Trap")
+        {
+            StartCoroutine(Trapped(1.0F));
         }
     }
 
@@ -120,7 +125,6 @@ public class Player : MonoBehaviour
         
     }
 
-
     void DropTree()
     {
         carriedObject.transform.parent = null;
@@ -131,7 +135,36 @@ public class Player : MonoBehaviour
 
         carriedCol.enabled = true;
         carriedCol = null;
+        ResetPlayerStats();
+    }
+
+    void ResetPlayerStats()
+    {
+        currentMoney = 0;
         burden = 1;
         hasTree = false;
+    }
+
+    IEnumerator CutTree(Collider col, float waitTime)
+    {
+        cutAvailable = false;
+        Wood wood = col.gameObject.GetComponent<Wood>();
+        wood.currentHealth -= cutStrength;
+
+        col.gameObject.transform.Rotate(transform.rotation.x, transform.rotation.y, transform.rotation.z - 90 / wood.maxHealth, Space.Self);
+        if (wood.currentHealth <= 0)
+        {
+            CollectTree(col);
+        }
+        yield return new WaitForSeconds(waitTime);
+        cutAvailable = true;
+    }
+
+    IEnumerator Trapped(float waitTime)
+    {
+        float tempSpeed = speed;
+        speed = 0;
+        yield return new WaitForSeconds(waitTime);
+        speed = tempSpeed;
     }
 }
