@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 23193371735484128}
   - component: {fileID: 54751549639642384}
   - component: {fileID: 114227486899010362}
+  - component: {fileID: 82017833385368286}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -240,6 +241,86 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!82 &82017833385368286
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1249570208687536}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &114227486899010362
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -254,14 +335,21 @@ MonoBehaviour:
   hasTree: 0
   playerMoney: 0
   currentMoney: 0
-  speed: 5
+  speed: 230
+  jumpForce: 0
   turnSpeed: 5
   moneyText: {fileID: 0}
   carriedObject: {fileID: 0}
+  activatedTrap: {fileID: 0}
+  cutStrength: 1
+  cutAvailable: 1
   backPack: {fileID: 4406374667887140}
   playerID: 1
   burden: 1
   enableKeyboardInput: 1
+  audio: {fileID: 0}
+  screams: []
+  cuttings: []
 --- !u!136 &136496673878780932
 CapsuleCollider:
   m_ObjectHideFlags: 1

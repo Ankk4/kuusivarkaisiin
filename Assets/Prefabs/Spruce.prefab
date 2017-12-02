@@ -638,7 +638,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   money: 100
-  burden: 0.9
+  burden: 0.7
   maxHealth: 5
   currentHealth: 5
   woodMass: 3

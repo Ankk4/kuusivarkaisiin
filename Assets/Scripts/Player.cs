@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     public int playerMoney = 0;
     public int currentMoney = 0;
     public float speed = 5.0f;
-    public float turnSpeed = 5.0f;
+    public float jumpForce = 50;
     public Text moneyText;
     public GameObject carriedObject;
     public Trap activatedTrap;
@@ -24,14 +24,16 @@ public class Player : MonoBehaviour
     public AudioSource audio;
     public AudioClip[] screams;
     public AudioClip[] cuttings;
-
+    
     private float trapTime;
     private float initSpeed;
     private Collider carriedCol;
     private string input_xAxis;
     private string input_yAxis;
+
     private string input_interact;
     private string input_drop;
+    private bool jumpAvailable = true;
 
     Animator animator;
 
@@ -61,6 +63,11 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (!jumpAvailable && transform.position.y < 1f)
+        {
+            jumpAvailable = true;
+        }
+
         if (Input.GetButton(input_drop) && hasTree)
         {
             Debug.Log("drop tree " + gameObject.name + " whos ID = "  + playerID.ToString());
@@ -70,9 +77,17 @@ public class Player : MonoBehaviour
 
 	// Update is called once per frame
 	void FixedUpdate () 
-    {        
+    {
+        if (Input.GetButtonDown("Jump") && jumpAvailable)
+        {
+            //rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
+            rb.AddForce(Vector3.up * jumpForce);
+            jumpAvailable = false;
+        }
+
         Vector3 targetVelocity = Vector3.Normalize(new Vector3(Input.GetAxis(input_xAxis), 0, Input.GetAxis(input_yAxis)));
-        rb.velocity = targetVelocity * speed * burden;
+        //rb.velocity = targetVelocity * speed * burden;
+        rb.AddForce(targetVelocity * speed * burden, ForceMode.Force);
         
         var localVelocity = gameObject.transform.InverseTransformDirection(rb.velocity);
         if (localVelocity.x !=0 && localVelocity.z != 0)
@@ -182,6 +197,8 @@ public class Player : MonoBehaviour
 
     IEnumerator CutTree(Collider col, float waitTime)
     {
+        audio.clip = cuttings[Random.Range(0, cuttings.Length)];
+        audio.Play();
         animator.SetBool("Attacking",true);
         cutAvailable = false;
         Wood wood = col.gameObject.GetComponent<Wood>();
