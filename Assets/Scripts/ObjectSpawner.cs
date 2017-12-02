@@ -28,7 +28,8 @@ public class ObjectSpawner : MonoBehaviour {
 
     public void Spawn()
     {
-        Instantiate(hazardList[Random.Range(0, hazardList.Length)], NewPosition(), transform.rotation);
+        GameObject go = Instantiate(hazardList[Random.Range(0, hazardList.Length)], NewPosition(), Quaternion.identity);
+        go.gameObject.transform.parent = gameObject.transform;
     }
 
     Vector3 NewPosition()

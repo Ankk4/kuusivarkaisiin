@@ -32,10 +32,13 @@ public class Player : MonoBehaviour
     private string input_xAxis;
     private string input_yAxis;
     public bool enableKeyboardInput = false;
-    
+
+    Animator animator;
+
 	// Use this for initialization
 	void Start () 
     {
+        animator = GetComponent<Animator>();
         rb = gameObject.GetComponent<Rigidbody>();
         if (enableKeyboardInput) {
             input_xAxis = "Horizontal";
@@ -65,12 +68,13 @@ public class Player : MonoBehaviour
     {        
         Vector3 targetVelocity = Vector3.Normalize(new Vector3(Input.GetAxis(input_xAxis), 0, Input.GetAxis(input_yAxis)));
         rb.velocity = targetVelocity * speed * burden;
-
+        
         var localVelocity = gameObject.transform.InverseTransformDirection(rb.velocity);
         if (localVelocity.x !=0 && localVelocity.z != 0)
         {
             gameObject.transform.rotation = Quaternion.LookRotation(targetVelocity, Vector3.up);
         }
+        animator.SetFloat("Speed", targetVelocity.magnitude);
 	}
 
     void OnTriggerEnter(Collider other) 
@@ -111,9 +115,9 @@ public class Player : MonoBehaviour
         if (other.gameObject.tag == "Collectable" && !hasTree)
         {
             
-            if(Input.GetButton("Fire1") && cutAvailable)
+            if(Input.GetButtonDown("Fire1") && cutAvailable)
             {
-                StartCoroutine(CutTree(other, 1.0F));
+                StartCoroutine(CutTree(other, 0.15F));
             }
         }
     }
@@ -166,6 +170,7 @@ public class Player : MonoBehaviour
 
     IEnumerator CutTree(Collider col, float waitTime)
     {
+        animator.SetBool("Attacking",true);
         cutAvailable = false;
         Wood wood = col.gameObject.GetComponent<Wood>();
         wood.currentHealth -= cutStrength;
@@ -177,6 +182,7 @@ public class Player : MonoBehaviour
         }
         yield return new WaitForSeconds(waitTime);
         cutAvailable = true;
+        animator.SetBool("Attacking", false);
     }
 
     IEnumerator Trapped(float waitTime)
