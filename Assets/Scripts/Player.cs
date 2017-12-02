@@ -12,26 +12,24 @@ public class Player : MonoBehaviour
     public int currentMoney = 0;
     public float speed = 5.0f;
     public float turnSpeed = 5.0f;
-    private float trapTime;
-    private float initSpeed;
-
     public Text moneyText;
-
-    public int cutStrength = 1;
-    public bool cutAvailable = true;
-
     public GameObject carriedObject;
     public Trap activatedTrap;
-    private Collider carriedCol;
+    public int cutStrength = 1;
+    public bool cutAvailable = true;
     public Transform backPack;
-
-    [Range(1,4)]public int playerID = 1;
-
+    [Range(1, 4)]public int playerID = 1;
     public float burden = 1;
-
-    private string input_xAxis;
-    private string input_yAxis;
     public bool enableKeyboardInput = false;
+    public AudioSource audio;
+    public AudioClip[] screams;
+    public AudioClip[] cuttings;
+
+    private float trapTime;
+    private float initSpeed;
+    private Collider carriedCol;
+    private string input_xAxis;
+    private string input_yAxis;    
 
     Animator animator;
 
@@ -187,6 +185,9 @@ public class Player : MonoBehaviour
 
     IEnumerator Trapped(float waitTime)
     {
+        audio.clip = screams[Random.Range(0, screams.Length)];
+        audio.Play();
+
         float tempSpeed = speed;
         speed = 0;
         yield return new WaitForSeconds(waitTime);

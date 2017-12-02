@@ -122,6 +122,7 @@ GameObject:
   - component: {fileID: 4777551}
   - component: {fileID: 1680326452}
   - component: {fileID: 4777554}
+  - component: {fileID: 4777556}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -226,6 +227,86 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: -90.00001, z: 0}
+--- !u!82 &4777556
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 4777550}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 97
+  Pan2D: 0
+  rolloffMode: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!1001 &21208277
 Prefab:
   m_ObjectHideFlags: 0
@@ -1170,14 +1251,17 @@ MonoBehaviour:
   speed: 5
   turnSpeed: 5
   moneyText: {fileID: 1000785676}
-  cutStrength: 1
-  cutAvailable: 1
   carriedObject: {fileID: 0}
   activatedTrap: {fileID: 0}
+  cutStrength: 1
+  cutAvailable: 1
   backPack: {fileID: 57423753}
   playerID: 2
   burden: 1
   enableKeyboardInput: 0
+  audio: {fileID: 0}
+  screams: []
+  cuttings: []
 --- !u!54 &315023037
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1400,14 +1484,17 @@ MonoBehaviour:
   speed: 5
   turnSpeed: 5
   moneyText: {fileID: 1000785676}
-  cutStrength: 1
-  cutAvailable: 1
   carriedObject: {fileID: 0}
   activatedTrap: {fileID: 0}
+  cutStrength: 1
+  cutAvailable: 1
   backPack: {fileID: 1328216996}
   playerID: 3
   burden: 1
   enableKeyboardInput: 0
+  audio: {fileID: 0}
+  screams: []
+  cuttings: []
 --- !u!54 &434439286
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4075,14 +4162,28 @@ MonoBehaviour:
   speed: 5
   turnSpeed: 5
   moneyText: {fileID: 1726513659}
-  cutStrength: 1
-  cutAvailable: 1
   carriedObject: {fileID: 0}
   activatedTrap: {fileID: 0}
+  cutStrength: 1
+  cutAvailable: 1
   backPack: {fileID: 1141063382}
   playerID: 1
   burden: 1
   enableKeyboardInput: 1
+  audio: {fileID: 0}
+  screams:
+  - {fileID: 8300000, guid: aef59783314d1754b8a9aaddb70867a9, type: 3}
+  - {fileID: 8300000, guid: 8940fbf90f7b6224b8cfbe049e39b1e2, type: 3}
+  - {fileID: 8300000, guid: 9dbd641a16b97804596970d7f534b225, type: 3}
+  - {fileID: 8300000, guid: 7b4fda1bbc400a64ea83aff90e3daa98, type: 3}
+  - {fileID: 8300000, guid: 87e9ae61e1300494fb68d99696d2de7e, type: 3}
+  - {fileID: 8300000, guid: b189835b41650004f8ee42d2b9de524a, type: 3}
+  - {fileID: 8300000, guid: 30d636e3f594d334b992816bde20eaa7, type: 3}
+  cuttings:
+  - {fileID: 8300000, guid: f25391bf2ea83f94db97f67cd7e9d119, type: 3}
+  - {fileID: 8300000, guid: ecfbfc4beee6f254aa2110652f2470f5, type: 3}
+  - {fileID: 8300000, guid: 0590b852fde887c4c95a9978db9f9050, type: 3}
+  - {fileID: 8300000, guid: 2bed42c34e7544549ae51b688202201c, type: 3}
 --- !u!4 &1683088625 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4381293131971914, guid: acc2e6571b37cc74b9f70e9652f2d265,
@@ -4918,14 +5019,17 @@ MonoBehaviour:
   speed: 5
   turnSpeed: 5
   moneyText: {fileID: 1000785676}
-  cutStrength: 1
-  cutAvailable: 1
   carriedObject: {fileID: 0}
   activatedTrap: {fileID: 0}
+  cutStrength: 1
+  cutAvailable: 1
   backPack: {fileID: 661150373}
   playerID: 4
   burden: 1
   enableKeyboardInput: 0
+  audio: {fileID: 0}
+  screams: []
+  cuttings: []
 --- !u!54 &2058716576
 Rigidbody:
   m_ObjectHideFlags: 0
