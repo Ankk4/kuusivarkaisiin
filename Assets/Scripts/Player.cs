@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
     public int currentMoney = 0;
     public float speed = 5.0f;
     public float turnSpeed = 5.0f;
+    private float trapTime;
+    private float initSpeed;
 
     public Text moneyText;
 
@@ -19,6 +21,7 @@ public class Player : MonoBehaviour
     public bool cutAvailable = true;
 
     public GameObject carriedObject;
+    public Trap activatedTrap;
     private Collider carriedCol;
     public Transform backPack;
 
@@ -45,6 +48,7 @@ public class Player : MonoBehaviour
         }
 
         moneyText.text = "PLAYER " + playerID + " MONEYS: " + playerMoney;
+        initSpeed = speed;
 
 	}
 
@@ -58,10 +62,10 @@ public class Player : MonoBehaviour
 
 	// Update is called once per frame
 	void FixedUpdate () 
-    {
-        
+    {        
         Vector3 targetVelocity = Vector3.Normalize(new Vector3(Input.GetAxis(input_xAxis), 0, Input.GetAxis(input_yAxis)));
         rb.velocity = targetVelocity * speed * burden;
+
         var localVelocity = gameObject.transform.InverseTransformDirection(rb.velocity);
         if (localVelocity.x !=0 && localVelocity.z != 0)
         {
@@ -71,6 +75,21 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter(Collider other) 
     {
+        if (other.gameObject.tag == "Trap")
+        {
+            Trap trap = other.gameObject.GetComponent<Trap>();
+            if (!trap.activated) 
+            {
+                if (carriedObject != null && hasTree) {
+                    DropTree();
+                }
+                trap.activated = true;
+                trapTime = trap.timeActive;                
+                StartCoroutine(Trapped(trapTime));
+                Destroy(trap.gameObject, trapTime);
+            }
+        }
+
         if (other.gameObject.tag == "Shop" && hasTree)
         {
             Destroy(carriedObject);
@@ -91,11 +110,6 @@ public class Player : MonoBehaviour
             {
                 StartCoroutine(CutTree(other, 1.0F));
             }
-        }
-
-        if (other.gameObject.tag == "Trap")
-        {
-            StartCoroutine(Trapped(1.0F));
         }
     }
 
@@ -121,8 +135,7 @@ public class Player : MonoBehaviour
         currentMoney = wood.money;
         burden = wood.burden;
 
-        hasTree = true;
-        
+        hasTree = true;        
     }
 
     void DropTree()
@@ -143,6 +156,7 @@ public class Player : MonoBehaviour
         currentMoney = 0;
         burden = 1;
         hasTree = false;
+        speed = initSpeed;
     }
 
     IEnumerator CutTree(Collider col, float waitTime)

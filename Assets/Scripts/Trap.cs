@@ -5,13 +5,14 @@ using UnityEngine;
 public class Trap : MonoBehaviour {
 
     public float spawnPadding = 10f;
-    public float ySpawn = 0f;
+    public float ySpawn = -0.2f;
 
     public int money = 0;
-    public float burden = 0.05f;
+    public float burden = 0.01f;
     public float timeActive = 3f;
     public bool activated = false;
 
+    private bool alreadyDestroyed = false;
     private float timeElapsed;
     private Bounds groundSize;
 
@@ -22,16 +23,7 @@ public class Trap : MonoBehaviour {
 
     // Update is called once per frame
     void Update()
-    {
-        if (activated)
-        {
-            timeElapsed += Time.time;
-        }
-
-        if (timeElapsed > timeActive)
-        {
-            Destroy(this);
-        }            
+    {     
     }
 
     void OnTriggerEnter(Collider col)

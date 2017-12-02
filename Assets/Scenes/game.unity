@@ -460,6 +460,7 @@ MonoBehaviour:
   cutStrength: 1
   cutAvailable: 1
   carriedObject: {fileID: 0}
+  activatedTrap: {fileID: 0}
   backPack: {fileID: 57423753}
   playerID: 2
   burden: 1
@@ -2369,7 +2370,7 @@ GameObject:
   - component: {fileID: 1656063385}
   m_Layer: 0
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2633,6 +2634,52 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1687477660}
+--- !u!1001 &1686601538
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4740635107518626, guid: 2de795a720adcd148a3b3294c0d0c25e, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 1.0260038
+      objectReference: {fileID: 0}
+    - target: {fileID: 4740635107518626, guid: 2de795a720adcd148a3b3294c0d0c25e, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 11.657
+      objectReference: {fileID: 0}
+    - target: {fileID: 4740635107518626, guid: 2de795a720adcd148a3b3294c0d0c25e, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -2.8618264
+      objectReference: {fileID: 0}
+    - target: {fileID: 4740635107518626, guid: 2de795a720adcd148a3b3294c0d0c25e, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4740635107518626, guid: 2de795a720adcd148a3b3294c0d0c25e, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4740635107518626, guid: 2de795a720adcd148a3b3294c0d0c25e, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4740635107518626, guid: 2de795a720adcd148a3b3294c0d0c25e, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4740635107518626, guid: 2de795a720adcd148a3b3294c0d0c25e, type: 2}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4002854147106554, guid: 2de795a720adcd148a3b3294c0d0c25e, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -111.6
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 2de795a720adcd148a3b3294c0d0c25e, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &1688621931
 Prefab:
   m_ObjectHideFlags: 0

@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class ObjectSpawner : MonoBehaviour {
 
-    public GameObject bearTrap;
-    public float spawnTime = 3f;            // How long between each spawn.
-    public float timeElapsed = 0;           
-    public Transform[] spawnPoints;         // An array of the spawn points this enemy can spawn from.
+    public float spawnPadding = 10f;
+    public float ySpawn = -0.2f;
+    public float spawnTime = 3f;            // How long between each spawn.           
     public Bounds groundSize;
+    public GameObject[] hazardList;
 
+    private float timeElapsed = 0;
 	// Use this for initialization
 	void Start () {
         this.groundSize = GameObject.FindGameObjectWithTag("Ground").GetComponent<Collider>().bounds;
@@ -27,23 +28,15 @@ public class ObjectSpawner : MonoBehaviour {
 
     public void Spawn()
     {
-        Vector3 pos = new Vector3(
-            Random.Range(this.groundSize.center.x - this.groundSize.size.x / 2, this.groundSize.center.x + this.groundSize.size.x / 2),
-            0.5f,
-            Random.Range(this.groundSize.center.z - this.groundSize.size.z / 2, this.groundSize.center.z + this.groundSize.size.z / 2)
-        );
-
-        GameObject ob = (GameObject)Instantiate(this.bearTrap, pos, transform.rotation);
+        Instantiate(hazardList[Random.Range(0, hazardList.Length)], NewPosition(), transform.rotation);
     }
 
-    void OnTriggerEnter(Collider other)
+    Vector3 NewPosition()
     {
-        print("OHO OSUI");
-        Vector3 pos = new Vector3(
-            Random.Range(this.groundSize.center.x - this.groundSize.size.x / 2, this.groundSize.center.x + this.groundSize.size.x / 2),
-            0.5f,
-            Random.Range(this.groundSize.center.z - this.groundSize.size.z / 2, this.groundSize.center.z + this.groundSize.size.z / 2)
-        );
-        other.transform.position = pos;
+        float xMin = (this.groundSize.center.x - this.groundSize.size.x / 2) + spawnPadding;
+        float xMax = (this.groundSize.center.x + this.groundSize.size.x / 2) - spawnPadding;
+        float zMin = (this.groundSize.center.z - this.groundSize.size.z / 2) + spawnPadding;
+        float zMax = (this.groundSize.center.z + this.groundSize.size.z / 2) - spawnPadding;
+        return new Vector3(Random.Range(xMin, xMax), ySpawn, Random.Range(zMin, zMax));
     }
 }
