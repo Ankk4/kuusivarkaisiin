@@ -29,7 +29,9 @@ public class Player : MonoBehaviour
     private float initSpeed;
     private Collider carriedCol;
     private string input_xAxis;
-    private string input_yAxis;    
+    private string input_yAxis;
+    private string input_interact;
+    private string input_drop;
 
     Animator animator;
 
@@ -41,11 +43,15 @@ public class Player : MonoBehaviour
         if (enableKeyboardInput) {
             input_xAxis = "Horizontal";
             input_yAxis = "Vertical";
+            input_interact = "Fire1";
+            input_drop = "Fire2";
         }
         else
         {
             input_xAxis = "Horizontal" + playerID.ToString();
             input_yAxis = "Vertical" + playerID.ToString();
+            input_interact = "xboxA" + playerID.ToString();
+            input_drop = "xboxB" + playerID.ToString();
         }
 
         moneyText.text = "PLAYER " + playerID + " MONEYS: " + playerMoney;
@@ -55,8 +61,9 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire2") && hasTree)
+        if (Input.GetButton(input_drop) && hasTree)
         {
+            Debug.Log("drop tree " + gameObject.name + " whos ID = "  + playerID.ToString());
             DropTree();
         }
     }
@@ -113,7 +120,7 @@ public class Player : MonoBehaviour
         if (other.gameObject.tag == "Collectable" && !hasTree)
         {
             
-            if(Input.GetButtonDown("Fire1") && cutAvailable)
+            if(Input.GetButton(input_interact) && cutAvailable)
             {
                 StartCoroutine(CutTree(other, 0.15F));
             }
@@ -145,7 +152,7 @@ public class Player : MonoBehaviour
         hasTree = true;        
     }
 
-    void DropTree()
+    private void DropTree()
     {
         carriedObject.transform.parent = null;
 
@@ -156,6 +163,13 @@ public class Player : MonoBehaviour
         carriedCol.enabled = true;
         carriedCol = null;
         ResetPlayerStats();
+    }
+
+    public void GetOffMyLawn()
+    {
+        if (hasTree)
+            DropTree();
+        transform.position = new Vector3(40, transform.position.y, 0);
     }
 
     void ResetPlayerStats()

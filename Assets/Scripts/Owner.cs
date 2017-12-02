@@ -32,10 +32,20 @@ public class Owner : MonoBehaviour
 
         if (distanceToPlayer1 == distanceToPlayer2)
             agent.destination = transform.position;
-        else if (distanceToPlayer1 < distanceToPlayer2)
+        else if (distanceToPlayer1 < distanceToPlayer2) {
             agent.destination = goal.position;
-        else
+            if (distanceToPlayer1 < 2.0f) {
+                Player caughtPlayer = goal.gameObject.GetComponent<Player>();
+                caughtPlayer.GetOffMyLawn();
+            }
+        }
+        else {
             agent.destination = goal2.position;
+            if (distanceToPlayer2 < 2.0f) {
+                Player caughtPlayer = goal2.gameObject.GetComponent<Player>();
+                caughtPlayer.GetOffMyLawn();
+            }
+        }
 	}
 
     float CheckSightToPlayer(Vector3 playerPos, string desiredTargetTag)
@@ -43,7 +53,7 @@ public class Owner : MonoBehaviour
         Vector3 myPos = transform.position;
         float distanceToPlayer = Vector3.Distance(myPos, playerPos);
         RaycastHit hit;
-        if (distanceToPlayer > 5.0f && Physics.Raycast(myPos, playerPos - myPos, out hit, distanceToPlayer) && hit.collider.gameObject.tag == desiredTargetTag)
+        if (Physics.Raycast(myPos, playerPos - myPos, out hit, distanceToPlayer) && hit.collider.gameObject.tag == desiredTargetTag)
         {
             //Debug.DrawRay(sightStartPos, p1pos, Color.yellow);
             //Debug.DrawRay(sightStartPos, Vector3.MoveTowards(sightStartPos, hit.collider.transform.position, distanceToPlayer), Color.green);
