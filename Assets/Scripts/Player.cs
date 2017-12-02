@@ -15,7 +15,10 @@ public class Player : MonoBehaviour
 
     public Text moneyText;
 
+    public float cutStrength = 1;
+
     public GameObject carriedObject;
+    private Collider carriedCol;
     public Transform backPack;
 
     [Range(1,4)]public int playerID = 1;
@@ -43,7 +46,15 @@ public class Player : MonoBehaviour
         moneyText.text = "PLAYER " + playerID + " MONEYS: " + playerMoney;
 
 	}
-	
+
+    void Update()
+    {
+        if (Input.GetButtonDown("Fire2") && hasTree)
+        {
+            DropTree();
+        }
+    }
+
 	// Update is called once per frame
 	void FixedUpdate () 
     {
@@ -55,30 +66,10 @@ public class Player : MonoBehaviour
         {
             gameObject.transform.rotation = Quaternion.LookRotation(targetVelocity, Vector3.up);
         }
-        //Debug.Log("velocity" + localVelocity.z);
-        //rb.AddForce(transform.forward *(Input.GetAxis("Vertical")) * speed);
-        //rb.AddForce(transform.right * (Input.GetAxis("Horizontal")) * speed);
-        //rb.AddTorque(transform.up * (Input.GetAxis("Horizontal")) * turnSpeed);
 	}
+
     void OnTriggerEnter(Collider other) 
     {
-        if (other.gameObject.tag == "Collectable" && !hasTree)
-        {
-            carriedObject = other.gameObject;
-            carriedObject.transform.parent = backPack;
-            carriedObject.transform.position = backPack.position;
-            carriedObject.transform.rotation = backPack.rotation;
-
-            Wood wood = other.gameObject.GetComponent<Wood>();
-
-            currentMoney = wood.money;
-            burden = wood.burden;
-
-            hasTree = true;
-            other.enabled = false;
-        }
-
-
         if (other.gameObject.tag == "Shop" && hasTree)
         {
             Destroy(carriedObject);
@@ -90,5 +81,57 @@ public class Player : MonoBehaviour
             burden = 1;
             hasTree = false;
         }
+    }
+
+    void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "Collectable" && !hasTree)
+        {
+            if(Input.GetButtonDown("Fire1"))
+            {
+                CollectTree(other);
+            }
+        }
+    }
+
+    void CollectTree(Collider col)
+    {
+        carriedObject = col.gameObject;
+        carriedCol = col;
+
+        col.enabled = false;
+
+        Rigidbody colRb = carriedObject.GetComponent<Rigidbody>();
+        if (colRb != null)
+        {
+            Destroy(colRb);
+        }
+
+        carriedObject.transform.parent = backPack;
+        carriedObject.transform.position = backPack.position;
+        carriedObject.transform.rotation = backPack.rotation;
+
+        Wood wood = carriedObject.GetComponent<Wood>();
+
+        currentMoney = wood.money;
+        burden = wood.burden;
+
+        hasTree = true;
+        
+    }
+
+
+    void DropTree()
+    {
+        carriedObject.transform.parent = null;
+
+        Wood wood = carriedObject.GetComponent<Wood>();
+        Rigidbody carriedRb = carriedObject.AddComponent(typeof(Rigidbody)) as Rigidbody;
+        carriedRb.mass = wood.woodMass;
+
+        carriedCol.enabled = true;
+        carriedCol = null;
+        burden = 1;
+        hasTree = false;
     }
 }
