@@ -99,6 +99,11 @@ public class Player : MonoBehaviour
   
             ResetPlayerStats();
         }
+
+        if (other.gameObject.tag == "Trap")
+        {
+            StartCoroutine(Trapped(1.0F));
+        }
     }
 
     void OnTriggerStay(Collider other)
