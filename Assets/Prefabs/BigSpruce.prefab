@@ -303,8 +303,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1377432849488716}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.44, y: 0, z: -2.09}
-  m_LocalScale: {x: 0.765027, y: 0.76502705, z: 0.76502705}
+  m_LocalPosition: {x: -24.6, y: 0, z: 31.7}
+  m_LocalScale: {x: 0.76502997, y: 0.76502997, z: 0.76502997}
   m_Children:
   - {fileID: 4541695388416210}
   - {fileID: 4224513562418362}
@@ -970,7 +970,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   money: 300
-  burden: 0.3
+  burden: 0.5
   maxHealth: 10
   currentHealth: 10
   woodMass: 10
