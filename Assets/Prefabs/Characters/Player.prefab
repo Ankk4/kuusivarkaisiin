@@ -2089,6 +2089,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ecfbfc4beee6f254aa2110652f2470f5, type: 3}
   - {fileID: 8300000, guid: 0590b852fde887c4c95a9978db9f9050, type: 3}
   - {fileID: 8300000, guid: 2bed42c34e7544549ae51b688202201c, type: 3}
+  jee: {fileID: 8300000, guid: 5623f41c41e815a478c3a014557f1274, type: 3}
 --- !u!136 &136363174419973276
 CapsuleCollider:
   m_ObjectHideFlags: 1

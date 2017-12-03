@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     public AudioSource audio;
     public AudioClip[] screams;
     public AudioClip[] cuttings;
+    public AudioClip jee;
     
     private float trapTime;
     private float initSpeed;
@@ -118,7 +119,13 @@ public class Player : MonoBehaviour
 
             playerMoney += currentMoney;
             moneyText.text = "PLAYER " + playerID + " MONEYS: " + playerMoney;
-  
+
+            if (!audio.isPlaying)
+            {
+                audio.clip = jee;
+                audio.Play();
+            }
+
             ResetPlayerStats();
         }
 
