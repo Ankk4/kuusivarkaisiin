@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33463204141931886}
   - component: {fileID: 23522328562451030}
   - component: {fileID: 65483691079360564}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Leaves
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 33133374999743572}
   - component: {fileID: 23475871014545854}
   - component: {fileID: 65244372140419322}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Leaves
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,11 +55,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4381293131971914}
-  - component: {fileID: 135946614410624078}
-  - component: {fileID: 114737263546932952}
-  - component: {fileID: 54042635852483078}
-  m_Layer: 10
-  m_Name: Spruce
+  m_Layer: 0
+  m_Name: BG_Spruce
   m_TagString: Collectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +73,7 @@ GameObject:
   - component: {fileID: 33589749959470218}
   - component: {fileID: 23045215202329608}
   - component: {fileID: 65675903624367776}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Leaves
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +91,7 @@ GameObject:
   - component: {fileID: 33599730105409336}
   - component: {fileID: 23381414993089464}
   - component: {fileID: 65882358302995802}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Leaves
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,7 +109,7 @@ GameObject:
   - component: {fileID: 33216082601237122}
   - component: {fileID: 23585592716653588}
   - component: {fileID: 65742960256654486}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Leaves
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -130,7 +127,7 @@ GameObject:
   - component: {fileID: 33237636147729720}
   - component: {fileID: 23040456579823688}
   - component: {fileID: 65297033052243352}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Leaves
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,7 +145,7 @@ GameObject:
   - component: {fileID: 33278074840985380}
   - component: {fileID: 136369415586227318}
   - component: {fileID: 23572634308956476}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Trunk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -539,21 +536,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1474739402911600}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54042635852483078
-Rigidbody:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1377432849488716}
-  serializedVersion: 2
-  m_Mass: 3
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &65244372140419322
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -626,34 +608,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0000001, y: 1.0000002, z: 1.0000002}
   m_Center: {x: 0, y: 0, z: -0.0000019073486}
---- !u!114 &114737263546932952
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1377432849488716}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60316b5896d09df4a815e350a9ad2e81, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  money: 100
-  burden: 0.7
-  maxHealth: 5
-  currentHealth: 5
-  woodMass: 3
---- !u!135 &135946614410624078
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1377432849488716}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 2.22
-  m_Center: {x: 0, y: 0.04, z: 0}
 --- !u!136 &136369415586227318
 CapsuleCollider:
   m_ObjectHideFlags: 1
