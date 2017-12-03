@@ -106,7 +106,7 @@ public class Player : MonoBehaviour
                     DropTree();
                 }
                 trap.activated = true;
-                trapTime = trap.timeActive;                
+                trapTime = trap.timeActive;
                 StartCoroutine(Trapped(trapTime));
                 Destroy(trap.gameObject, trapTime);
             }
@@ -188,6 +188,8 @@ public class Player : MonoBehaviour
 
     public void GetOffMyLawn()
     {
+        ResetPlayerStats();
+
         if (hasTree)
             DropTree();
         transform.position = new Vector3(40, transform.position.y, 0);
@@ -205,6 +207,7 @@ public class Player : MonoBehaviour
     {
         audio.clip = cuttings[Random.Range(0, cuttings.Length)];
         audio.Play();
+
         animator.SetBool("Attacking",true);
         cutAvailable = false;
         Wood wood = col.gameObject.GetComponent<Wood>();
@@ -222,12 +225,20 @@ public class Player : MonoBehaviour
 
     IEnumerator Trapped(float waitTime)
     {
-        audio.clip = screams[Random.Range(0, screams.Length)];
-        audio.Play();
+        if (!audio.isPlaying)
+        {
+            audio.clip = screams[Random.Range(0, screams.Length)];
+            audio.Play();
+        }
 
         float tempSpeed = speed;
+        float tempJumpForce = jumpForce;
         speed = 0;
+        jumpForce = 0;
+
         yield return new WaitForSeconds(waitTime);
+        jumpAvailable = true;
         speed = tempSpeed;
+        jumpForce = tempJumpForce;
     }
 }

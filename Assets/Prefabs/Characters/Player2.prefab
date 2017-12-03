@@ -1187,8 +1187,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_PlayOnAwake: 0
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1197,7 +1197,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 97
+  MaxDistance: 95
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -1361,6 +1361,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 87e9ae61e1300494fb68d99696d2de7e, type: 3}
   - {fileID: 8300000, guid: b189835b41650004f8ee42d2b9de524a, type: 3}
   - {fileID: 8300000, guid: 30d636e3f594d334b992816bde20eaa7, type: 3}
+  - {fileID: 8300000, guid: 499402e114722a94bb9ac5c51bfdf3ce, type: 3}
+  - {fileID: 8300000, guid: 94c54a9fd2d8a3a41b02a7507777eaf0, type: 3}
   cuttings:
   - {fileID: 8300000, guid: f25391bf2ea83f94db97f67cd7e9d119, type: 3}
   - {fileID: 8300000, guid: ecfbfc4beee6f254aa2110652f2470f5, type: 3}
