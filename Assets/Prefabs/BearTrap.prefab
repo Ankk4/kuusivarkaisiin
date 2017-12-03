@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 65846036967209390}
   m_Layer: 10
   m_Name: Kuusivarkaisiin_BearTrap
-  m_TagString: Untagged
+  m_TagString: Trap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
