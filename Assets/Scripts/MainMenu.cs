@@ -43,4 +43,9 @@ public class MainMenu : MonoBehaviour {
         BackToMenuButton.gameObject.SetActive(false);
         creditsText.gameObject.SetActive(false);    
     }
+
+    public void OpenMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+    }
 }

@@ -9,30 +9,30 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1004347662288820}
+  m_RootGameObject: {fileID: 1180148517300360}
   m_IsPrefabParent: 1
---- !u!1 &1004347662288820
+--- !u!1 &1180148517300360
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4740635107518626}
-  - component: {fileID: 114668515613203162}
+  - component: {fileID: 4044732424312380}
+  - component: {fileID: 114337241444376320}
   m_Layer: 0
-  m_Name: HazardSpawner
+  m_Name: TreeSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4740635107518626
+--- !u!4 &4044732424312380
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1004347662288820}
+  m_GameObject: {fileID: 1180148517300360}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.0260038, y: 11.657, z: -2.8618264}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -40,12 +40,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114668515613203162
+--- !u!114 &114337241444376320
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1004347662288820}
+  m_GameObject: {fileID: 1180148517300360}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f3f8da7f9ccb1a749b741c41542c5b26, type: 3}
@@ -53,9 +53,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPadding: 10
   ySpawn: 0.1
-  spawnTime: 3
+  spawnTime: 10
   groundSize:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   hazardList:
-  - {fileID: 1246323299237354, guid: e550ce13bbcc9d94fabcb47efe8cfbc6, type: 2}
+  - {fileID: 1377432849488716, guid: 15e245d699eb6894dbfc12fb837404cd, type: 2}
+  - {fileID: 1377432849488716, guid: acc2e6571b37cc74b9f70e9652f2d265, type: 2}
