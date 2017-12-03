@@ -69,7 +69,6 @@ public class Player : MonoBehaviour
     {
         if (Input.GetButton(input_drop) && hasTree)
         {
-            Debug.Log("drop tree " + gameObject.name + " whos ID = "  + playerID.ToString());
             DropTree();
         }
     }

@@ -31,7 +31,6 @@ public class Owner : MonoBehaviour
         for (int i = 0;  i < players.Length; i++)
         {
             float distanceToPlayer = GetDistanceToPlayer(players[i].transform.position, "Player" + (i + 1).ToString());
-            Debug.Log(distanceToPlayer);
             if (distanceToPlayer != 10000.0f && distanceToPlayer < closestPlayerDistance) {
                 closestPlayerID = i;
                 closestPlayerDistance = distanceToPlayer;
