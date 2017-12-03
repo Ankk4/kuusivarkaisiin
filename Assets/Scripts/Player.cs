@@ -63,11 +63,6 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (!jumpAvailable && transform.position.y < 1f)
-        {
-            jumpAvailable = true;
-        }
-
         if (Input.GetButton(input_drop) && hasTree)
         {
             Debug.Log("drop tree " + gameObject.name + " whos ID = "  + playerID.ToString());
@@ -81,8 +76,8 @@ public class Player : MonoBehaviour
         if (Input.GetButtonDown("Jump") && jumpAvailable)
         {
             //rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
-            rb.AddForce(Vector3.up * jumpForce);
             jumpAvailable = false;
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
 
         Vector3 targetVelocity = Vector3.Normalize(new Vector3(Input.GetAxis(input_xAxis), 0, Input.GetAxis(input_yAxis)));
@@ -90,7 +85,7 @@ public class Player : MonoBehaviour
         rb.AddForce(targetVelocity * speed * burden, ForceMode.Force);
         
         var localVelocity = gameObject.transform.InverseTransformDirection(rb.velocity);
-        if (localVelocity.x !=0 && localVelocity.z != 0)
+        if (localVelocity.magnitude != 0 && targetVelocity != Vector3.zero)
         {
             gameObject.transform.rotation = Quaternion.LookRotation(targetVelocity, Vector3.up);
         }
@@ -165,6 +160,14 @@ public class Player : MonoBehaviour
         burden = wood.burden;
 
         hasTree = true;        
+    }
+
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "Ground")
+        {
+            jumpAvailable = true;
+        }
     }
 
     private void DropTree()

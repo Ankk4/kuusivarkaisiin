@@ -1342,7 +1342,7 @@ MonoBehaviour:
   playerMoney: 0
   currentMoney: 0
   speed: 500
-  jumpForce: 50
+  jumpForce: 5
   moneyText: {fileID: 0}
   carriedObject: {fileID: 0}
   activatedTrap: {fileID: 0}
