@@ -7,8 +7,7 @@ public class Owner : MonoBehaviour
 {
     //Rigidbody rb;
 
-    public Transform goal;
-    public Transform goal2;
+    public GameObject[] players;
     UnityEngine.AI.NavMeshAgent agent;
     Animator animator;
 
@@ -27,28 +26,30 @@ public class Owner : MonoBehaviour
 	// Update is called once per frame
 	void FixedUpdate () 
     {
-        float distanceToPlayer1 = CheckSightToPlayer(goal.position, "Player1");
-        float distanceToPlayer2 = CheckSightToPlayer(goal2.position, "Player2");
-
-        if (distanceToPlayer1 == distanceToPlayer2)
-            agent.destination = transform.position;
-        else if (distanceToPlayer1 < distanceToPlayer2) {
-            agent.destination = goal.position;
-            if (distanceToPlayer1 < 2.0f) {
-                Player caughtPlayer = goal.gameObject.GetComponent<Player>();
-                caughtPlayer.GetOffMyLawn();
+        int closestPlayerID = 0;
+        float closestPlayerDistance = 10000.0f;
+        for (int i = 0;  i < players.Length; i++)
+        {
+            float distanceToPlayer = GetDistanceToPlayer(players[i].transform.position, "Player" + (i + 1).ToString());
+            Debug.Log(distanceToPlayer);
+            if (distanceToPlayer != 10000.0f && distanceToPlayer < closestPlayerDistance) {
+                closestPlayerID = i;
+                closestPlayerDistance = distanceToPlayer;
             }
         }
-        else {
-            agent.destination = goal2.position;
-            if (distanceToPlayer2 < 2.0f) {
-                Player caughtPlayer = goal2.gameObject.GetComponent<Player>();
-                caughtPlayer.GetOffMyLawn();
-            }
+        if (closestPlayerDistance != 10000.0f)
+            agent.destination = players[closestPlayerID].transform.position;
+        else
+            agent.destination = transform.position;
+
+        if (closestPlayerDistance < 2.0f)
+        {
+            Player caughtPlayer = players[closestPlayerID].GetComponent<Player>();
+            caughtPlayer.GetOffMyLawn();
         }
 	}
 
-    float CheckSightToPlayer(Vector3 playerPos, string desiredTargetTag)
+    float GetDistanceToPlayer(Vector3 playerPos, string desiredTargetTag)
     {
         Vector3 myPos = transform.position;
         float distanceToPlayer = Vector3.Distance(myPos, playerPos);
