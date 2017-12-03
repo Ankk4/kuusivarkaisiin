@@ -2072,7 +2072,7 @@ MonoBehaviour:
   backPack: {fileID: 4302605399632298}
   playerID: 1
   burden: 1
-  enableKeyboardInput: 1
+  enableKeyboardInput: 0
   audio: {fileID: 82997259692787426}
   screams:
   - {fileID: 8300000, guid: aef59783314d1754b8a9aaddb70867a9, type: 3}
