@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
 
     private string input_interact;
     private string input_drop;
+    private string input_jump;
     private bool jumpAvailable = true;
 
     Animator animator;
@@ -47,13 +48,15 @@ public class Player : MonoBehaviour
             input_yAxis = "Vertical";
             input_interact = "Fire1";
             input_drop = "Fire2";
+            input_jump = "Jump";
         }
         else
         {
             input_xAxis = "Horizontal" + playerID.ToString();
             input_yAxis = "Vertical" + playerID.ToString();
-            input_interact = "xboxA" + playerID.ToString();
+            input_interact = "xboxX" + playerID.ToString();
             input_drop = "xboxB" + playerID.ToString();
+            input_jump = "xboxA" + playerID.ToString();
         }
 
         moneyText.text = "PLAYER " + playerID + " MONEYS: " + playerMoney;
@@ -73,7 +76,7 @@ public class Player : MonoBehaviour
 	// Update is called once per frame
 	void FixedUpdate () 
     {
-        if (Input.GetButtonDown("Jump") && jumpAvailable)
+        if (Input.GetButton(input_jump) && jumpAvailable)
         {
             //rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
             jumpAvailable = false;
