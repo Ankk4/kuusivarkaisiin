@@ -10,7 +10,7 @@ public class Owner : MonoBehaviour
     public Transform goal;
     public Transform goal2;
     UnityEngine.AI.NavMeshAgent agent;
-
+    Animator animator;
 
     void Start()
     {
