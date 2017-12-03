@@ -152,6 +152,8 @@ public class Player : MonoBehaviour
         carriedObject = col.gameObject;
         carriedCol = col;
 
+        carriedObject.tag = gameObject.tag;
+
         col.enabled = false;
 
         Rigidbody colRb = carriedObject.GetComponent<Rigidbody>();
@@ -188,6 +190,8 @@ public class Player : MonoBehaviour
         Rigidbody carriedRb = carriedObject.AddComponent(typeof(Rigidbody)) as Rigidbody;
         carriedRb.mass = wood.woodMass;
 
+        carriedObject.tag = "Collectable";
+
         carriedCol.enabled = true;
         carriedCol = null;
         ResetPlayerStats();
@@ -195,11 +199,11 @@ public class Player : MonoBehaviour
 
     public void GetOffMyLawn()
     {
-        ResetPlayerStats();
-
         if (hasTree)
             DropTree();
+        ResetPlayerStats();
         transform.position = new Vector3(40, transform.position.y, 0);
+        
     }
 
     void ResetPlayerStats()

@@ -58,6 +58,7 @@ GameObject:
   - component: {fileID: 135946614410624078}
   - component: {fileID: 114737263546932952}
   - component: {fileID: 54042635852483078}
+  - component: {fileID: 136207453762590754}
   m_Layer: 10
   m_Name: Spruce
   m_TagString: Collectable
@@ -641,7 +642,7 @@ MonoBehaviour:
   burden: 0.7
   maxHealth: 5
   currentHealth: 5
-  woodMass: 3
+  woodMass: 20
 --- !u!135 &135946614410624078
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -654,6 +655,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 2.22
   m_Center: {x: 0, y: 0.04, z: 0}
+--- !u!136 &136207453762590754
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1377432849488716}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 1.8
+  m_Height: 4.98
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.74, z: 0}
 --- !u!136 &136369415586227318
 CapsuleCollider:
   m_ObjectHideFlags: 1
