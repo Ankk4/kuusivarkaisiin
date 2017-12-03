@@ -11,21 +11,30 @@ public class Owner : MonoBehaviour
     UnityEngine.AI.NavMeshAgent agent;
     Animator animator;
 
+    public Bounds groundSize;
+    public float spawnPadding = 15f;
+    public float changeTime = 30f;
+    public float elapsedTime = 0f;
+
     void Start()
     {
         //rb = gameObject.GetComponent<Rigidbody>();
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+
+        animator = GetComponent<Animator>();
+        this.groundSize = GameObject.FindGameObjectWithTag("Ground").GetComponent<Collider>().bounds;
     }  
 
 
     void Update()
     {
-
+        animator.SetFloat("Speed", agent.velocity.magnitude);
     }
 
 	// Update is called once per frame
 	void FixedUpdate () 
     {
+        elapsedTime += Time.deltaTime;
         int closestPlayerID = 0;
         float closestPlayerDistance = 10000.0f;
         for (int i = 0;  i < players.Length; i++)
@@ -38,8 +47,8 @@ public class Owner : MonoBehaviour
         }
         if (closestPlayerDistance != 10000.0f)
             agent.destination = players[closestPlayerID].transform.position;
-        else
-            agent.destination = transform.position;
+        else if(elapsedTime > changeTime)
+            agent.destination = GetFallbackDestination();
 
         if (closestPlayerDistance < 2.0f)
         {
@@ -47,6 +56,16 @@ public class Owner : MonoBehaviour
             caughtPlayer.GetOffMyLawn();
         }
 	}
+
+    Vector3 GetFallbackDestination()
+    {
+        elapsedTime = 0;
+        float xMin = (this.groundSize.center.x - this.groundSize.size.x / 2) + spawnPadding;
+        float xMax = (this.groundSize.center.x + this.groundSize.size.x / 2) - spawnPadding;
+        float zMin = (this.groundSize.center.z - this.groundSize.size.z / 2) + spawnPadding;
+        float zMax = (this.groundSize.center.z + this.groundSize.size.z / 2) - spawnPadding;
+        return new Vector3(Random.Range(xMin, xMax), transform.position.y, Random.Range(zMin, zMax));
+    }
 
     float GetDistanceToPlayer(Vector3 playerPos, string desiredTargetTag)
     {

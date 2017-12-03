@@ -1081,7 +1081,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1985163447840462}
   m_LocalRotation: {x: -0, y: -0.70710576, z: -0, w: 0.7071079}
-  m_LocalPosition: {x: 20, y: 0.935, z: 0.863989}
+  m_LocalPosition: {x: 10.79, y: 0.935, z: 13.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4180925920946264}
@@ -1688,6 +1688,12 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  groundSize:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  spawnPadding: 10
+  changeTime: 30
+  elapsedTime: 0
 --- !u!136 &136211481890582554
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -1787,11 +1793,11 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 16
-  m_Acceleration: 16
+  m_Speed: 15
+  m_Acceleration: 15
   avoidancePriority: 50
   m_AngularSpeed: 10800
-  m_StoppingDistance: 5
+  m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
